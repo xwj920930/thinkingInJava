@@ -44,6 +44,8 @@ public class NewOptional {
                 .ifPresent(user1 -> {
             System.out.println();
                 });
+        System.out.print(Optional.ofNullable(user).orElse(new User(new Name(""))).name);
+        //作用都是非空的简单写法，貌似第一种更简洁
     }
     private static User b(User user){
 //         if(user!=null){
@@ -59,8 +61,7 @@ public class NewOptional {
         return Optional.ofNullable(user)
                 .filter(user1 ->"zhangsan".equals(user1.name))
                 .orElseGet(()->{
-                    User user1=null;
-                    return user1;
+                    return null;
                 });
     }
     public static void main(String[] args) {
@@ -72,5 +73,7 @@ public class NewOptional {
 //            optional.get().name="";
 //        }
         System.out.println(NewOptional.getUser(user));
+        a(user);
+        System.out.println(b(user));;
     }
 }
