@@ -1,8 +1,11 @@
 package jdk8;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -38,5 +41,17 @@ public class NewStream {
                 .distinct()
                 .collect(Collectors.toList());
         a.forEach(System.out::print);
+        System.out.println();
+        List<Person> personList = new ArrayList<>();
+        personList.add(new Person(1, "a"));
+        personList.add(new Person(1, "b"));
+        personList.add(new Person(2, "c"));
+        Map<Integer, List<Person>> collect = personList.stream().collect(Collectors.groupingBy(p -> p.id));
+        for (Map.Entry<Integer, List<Person>> entry : collect.entrySet()) {
+            System.out.println();
+            for (Person person : entry.getValue()) {
+                System.out.print(person);
+            }
+        }
     }
 }
